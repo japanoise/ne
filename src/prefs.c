@@ -25,7 +25,7 @@
 
 /* These are the names of ne's autoprefs directory. */
 
-#define PREFS_DIR ".ne"
+#define PREFS_DIR ".config/ne"
 
 /* This string is appended to the filename extension. It tries to
 be enough strange to avoid clashes with macros. */
@@ -90,25 +90,30 @@ char *exists_prefs_dir(void) {
 	char * home_dir;
 	if (!(home_dir = getenv("HOME"))) home_dir = ".";
 
-	if (prefs_dir = malloc(strlen(home_dir) + strlen(PREFS_DIR) + 3)) {
+	char *xdg_config_dir;
 
+	if ((xdg_config_dir = "XDG_CONFIG_HOME")) {
+		prefs_dir = malloc(strlen(xdg_config_dir) + strlen("ne") + 3);
+		strcat(strcat(strcpy(prefs_dir, xdg_config_dir), "/"), "ne");
+	} else if (prefs_dir = malloc(strlen(home_dir) + strlen(PREFS_DIR) + 3)) {
 		strcat(strcat(strcpy(prefs_dir, home_dir), "/"), PREFS_DIR);
+	} else {
+		return NULL;
+	}
 
-		struct stat s;
-		if (stat(prefs_dir, &s)) {
-			if (mkdir(prefs_dir, 0700)) {
-				free(prefs_dir);
-				return prefs_dir = NULL;
-			}
-		}
-		else if (!S_ISDIR(s.st_mode)) {
+	struct stat s;
+	if (stat(prefs_dir, &s)) {
+		if (mkdir(prefs_dir, 0700)) {
 			free(prefs_dir);
 			return prefs_dir = NULL;
 		}
-
-		return strcat(prefs_dir, "/");
 	}
-	else return NULL;
+	else if (!S_ISDIR(s.st_mode)) {
+		free(prefs_dir);
+		return prefs_dir = NULL;
+	}
+
+	return strcat(prefs_dir, "/");
 }
 
 
