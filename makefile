@@ -97,6 +97,7 @@ endif
 
 clean:
 	-rm -f ne-*.tar*
+	-rm -f src/*.o
 
 really-clean: clean
 	(cd src; make clean)
