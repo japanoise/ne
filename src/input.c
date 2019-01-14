@@ -227,7 +227,7 @@ static void init_history(void) {
 	if (!history_buff){
 		history_buff = alloc_buffer(NULL);
 		if (history_buff) {
-			const char * const history_filename = tilde_expand("~/.ne/.history");
+			const char * const history_filename = tilde_expand("~/.config/ne/.history");
 			clear_buffer(history_buff);
 			history_buff->opt.do_undo = 0;
 			history_buff->opt.auto_prefs = 0;

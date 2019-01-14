@@ -92,7 +92,7 @@ list buffers = { (node *)&buffers.tail, NULL, (node *)&buffers.head };
 list clips = { (node *)&clips.tail, NULL, (node *)&clips.head };
 list macros = { (node *)&macros.tail, NULL, (node *)&macros.head };
 
-/* global prefs, only saved in ~/.ne/.default#ap if their
+/* global prefs, only saved in ~/.config/ne/.default#ap if their
    current settings differ from these defaults. Make sure these
    defaults match the conditionals in prefs.c:save_prefs(). */
 #ifndef ALTPAGING

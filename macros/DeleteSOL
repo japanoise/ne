@@ -9,7 +9,7 @@
 #    # Let Alt-U map to the DeleteSOL macro
 #    KEY 1f5 DeleteSOL
 # 
-# in my ~/.ne/.keys file. The first line is just a comment.
+# in my ~/.config/ne/.keys file. The first line is just a comment.
 #
 # Note that while the case of the "KEY" keyword and keycode
 # itself don't matter (you could spell it "Key 1F5" or "key

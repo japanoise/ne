@@ -554,7 +554,7 @@ specific to particular document types. These preferences are: @code{FastGUI},
 By contrast, whenever you select the @samp{Save AutoPrefs} menu item, @code{ne} saves
 the flags of your current document to be used when
 you load other files with the same extension.
-These @dfn{autoprefs} are saved in a file in your @file{~/.ne}
+These @dfn{autoprefs} are saved in a file in your @file{~/.config/ne}
 directory. This file has the same name as the extension of the current
 document with @samp{#ap} appended to it. It contains all the commands
 necessary to recreate your current document's flag settings. Whenever
@@ -576,7 +576,7 @@ You may reasonably expect it to be treated as an @file{.xml} file rather than
 a generic file. For the purposes of applying automatic preferences and
 syntax definitions, @code{ne} provides a mechanism for overriding a wrong or
 missing extension with a @dfn{virtual extension} based on a document's
-contents. You do this by creating a @file{~/.ne/.extensions} file which is
+contents. You do this by creating a @file{~/.config/ne/.extensions} file which is
 fully described in the @ref{Virtual Extensions} section.
 
 
@@ -631,7 +631,7 @@ recorded macro for future use, you can give it a name and save it with
 the @samp{Save Macro...} menu item or the @code{SaveMacro} command.
 The macro is saved as a regular text file in your current directory by default or
 whatever directory you specify when prompted for the macro's name. If
-you save it in your @file{~/.ne} directory then it will be easy to
+you save it in your @file{~/.config/ne} directory then it will be easy to
 access it later from any other directory. The @samp{Open Macro...} menu item
 and the @code{OpenMacro} command load a macro from a file into the
 current macro buffer just as if you had just @code{Record}ed it.
@@ -653,10 +653,10 @@ command line does not specify one of @code{ne}'s built in commands, it is
 assumed to specify the name of a macro to execute. Thus, you can execute
 macros just by typing their file names. Include a path if the macro
 file's directory is different from your current directory or your
-@file{~/.ne} directory.
+@file{~/.config/ne} directory.
 
 If the first attempt to open a macro fails, @code{ne} checks for a macro
-with the given name in your @file{~/.ne} directory. This allows you
+with the given name in your @file{~/.config/ne} directory. This allows you
 to program simple extensions to @code{ne}'s language. For instance, all
 automatic preferences macros---which are just specially named macros
 that contain only commands to set preferences flags---can be executed
@@ -666,7 +666,7 @@ preference for the @samp{doc} extension for example, you can set
 @samp{.doc} by typing the command @code{doc#ap}.
 
 In general, it is a good idea to save frequently used macros in
-@file{~/.ne} so that you can invoke them by name without specifying
+@file{~/.config/ne} so that you can invoke them by name without specifying
 a path regardless of your current directory. On the other hand, if you
 have a macro that is customized for one document or a set of documents
 that you store in one directory, then you might want to save the
@@ -842,7 +842,7 @@ return to your command shell. @xref{Suspend}.
 @code{ne} allows you to associate any keystroke with any command, both
 built-in commands (with or without parameters) and macros. These associations
 are refered to as @dfn{key bindings}, which you define in your
-@code{~/.ne/.keys} file. The @code{KeyCode} command allows you to see the key
+@code{~/.config/ne/.keys} file. The @code{KeyCode} command allows you to see the key
 code @code{ne} sees in response to any key or key combination on your
 keyboard. It also shows the command string currently associated with that key
 code. This is described in @ref{Key Bindings}.
@@ -939,7 +939,7 @@ The @code{--keys @var{filename}} option and the @code{--menus
 @var{filename}} option specify a name different from the default one
 (@file{.keys} and @file{.menus}, respectively) for the key bindings and
 the menu configuration files. Note that @code{ne} searches for these
-files first in the current directory, and then in your @file{~/.ne}
+files first in the current directory, and then in your @file{~/.config/ne}
 directory.
 
 The @code{--ansi} and the @code{--no-ansi} options manage
@@ -1214,7 +1214,7 @@ as start/end of file, page up/down, etc.). Once you find a previous
 input you like, you can edit it further. Long input history is not
 document specific, so you can recall any of your inputs regardless of
 which document was active when you entered it. Furthermore, @code{ne}
-saves the most recent long inputs in @file{~/.ne/.history} when you end
+saves the most recent long inputs in @file{~/.config/ne/.history} when you end
 your @code{ne} session and loads them again when you begin another
 @code{ne} session.
 
@@ -1403,7 +1403,7 @@ syntax definition of your choice with the @code{Syntax} command. It
 takes the syntax name as a parameter. For example, the name ``@code{c}''
 works for C syntax files with extensions @samp{.c}, @samp{.h},
 @samp{c++}, etc. @code{ne} searches for the specified syntax definition
-file in the @samp{syntax} subdirectory of your @file{~/.ne} directory
+file in the @samp{syntax} subdirectory of your @file{~/.config/ne} directory
 first. If not found there, @code{ne} then looks in the @samp{syntax}
 subdirectory of @code{ne}'s global directory for the syntax definition
 file. @xref{Arguments}.
@@ -1418,7 +1418,7 @@ called simply @samp{tabs}. It highlights the @sc{tab}s in your text so
 you can distinguish them from regular spaces.
 
 You can create your own syntax definitions and store them in your
-@file{~/.ne/syntax} directory (actually, modifying the colors of an
+@file{~/.config/ne/syntax} directory (actually, modifying the colors of an
 existing definition is much easier; @pxref{Hints and Tricks}). A complete
 explanation of syntax specifications is beyond the scope of this document,
 but the existing definition files should prove to be useful examples. In
@@ -2166,7 +2166,7 @@ The use of autoprefs is definitely straightforward. You simply use the
 @pxref{SaveAutoPrefs}) when the current document has the given extension and
 the current configuration suits your tastes. The internal state of a series of
 options will be recorded as a macro containing commands that reproduce the
-current configuration. The macro is then saved in the @file{~/.ne}
+current configuration. The macro is then saved in the @file{~/.config/ne}
 directory (which is created if necessary) with the name given by the
 extension, postfixed with @samp{#ap}. Thus, the C sources automatic
 preferences file will be named @samp{c#ap}, the one for @TeX{} files @samp{tex#ap},
@@ -3297,7 +3297,7 @@ Note that macros whose names do not conflict with a command can be called
 without using @code{Macro}. Whenever @code{ne} is required to perform a command
 it cannot find in its internal tables, it will look for a macro by that
 name in the current directory. If this search also fails, @code{ne} looks in
-@file{~/.ne} and finally in the @file{macros} subdirectory of @code{ne}'s
+@file{~/.config/ne} and finally in the @file{macros} subdirectory of @code{ne}'s
 global directory (defined when @code{ne} was built, or in a place specified by
 your @code{NE_GLOBAL_DIR} environment variable) for a macro file by that name.
 
@@ -3688,15 +3688,15 @@ and the turbo parameter are global to @code{ne}, and are not
 saved. However, you can add manually to a preferences file any
 preferences command (such as @code{EscapeTime} or @code{Turbo});
 usually, this will be done to the default preferences file
-@file{~/.ne/.default#ap}.
+@file{~/.config/ne/.default#ap}.
 
 Note that there is an automatic preferences system, which automagically loads a
 preferences file related to the extension of the file name. Automatic
-preferences files are kept in your @file{~/.ne} directory. They
+preferences files are kept in your @file{~/.config/ne} directory. They
 are named as an extension postfixed with @samp{#ap}. Each time you open
 a file whose name has an extension for which there is an automatic
 preferences file, the latter is executed. Opening a file which has no
-extension causes the prefs from @file{~/.ne/.default#ap} to be loaded.
+extension causes the prefs from @file{~/.config/ne/.default#ap} to be loaded.
 If you want to inhibit this process, you can clear the automatic
 preferences flag. See @ref{AutoPrefs}.
 
@@ -3788,7 +3788,7 @@ A @samp{!} indicates the last line is not terminated.
 
 @noindent sets the automatic preferences flag. If this flag is true, each
 time an @code{Open} command is executed and a file is loaded, @code{ne} will
-look for an automatic preferences file in your @file{~/.ne} directory.
+look for an automatic preferences file in your @file{~/.config/ne} directory.
 The preferences file name is given by the extension of the file loaded,
 postfixed with @samp{#ap}. Thus, for instance, C sources have an associated
 @file{c#ap} file.
@@ -3869,7 +3869,7 @@ displayed. This option is only (but very) useful if you are using
 If you invoke @code{FastGUI} with no arguments, it will toggle the flag. If you
 specify 0 or 1, the flag will be set to false or true, respectively.
 
-The @code{FastGUI} setting is saved in your @file{~/.ne/.default#ap} file
+The @code{FastGUI} setting is saved in your @file{~/.config/ne/.default#ap} file
 when you use the @code{SaveDefPrefs} command or the @samp{Save Def Prefs} menu.
 It is not saved by the @code{SaveAutoPrefs} command.
 
@@ -3926,7 +3926,7 @@ are displayed by rows.
 If you invoke @code{RequestOrder} with no arguments, it will toggle the flag. If you
 specify 0 or 1, the flag will be set to false or true, respectively.
 
-The @code{RequestOrder} setting is saved in your @file{~/.ne/.default#ap} file
+The @code{RequestOrder} setting is saved in your @file{~/.config/ne/.default#ap} file
 when you use the @code{SaveDefPrefs} command or the @samp{Save Def Prefs} menu.
 It is not saved by the @code{SaveAutoPrefs} command.
 
@@ -3958,7 +3958,7 @@ scrolling region can produce annoying flashes at the bottom of the screen.
 If you invoke @code{StatusBar} with no arguments, it will toggle the flag. If you
 specify 0 or 1, the flag will be set to false or true, respectively.
 
-The @code{StatusBar} setting is saved in your @file{~/.ne/.default#ap} file
+The @code{StatusBar} setting is saved in your @file{~/.config/ne/.default#ap} file
 when you use the @code{SaveDefPrefs} command or the @samp{Save Def Prefs} menu.
 It is not saved by the @code{SaveAutoPrefs} command.
 
@@ -4145,7 +4145,7 @@ The only reason to use this flag is when recording a macro that will be
 played a great number of times. Automatic preferences files are too short to
 be an issue with respect to execution timing.
 
-The @code{VerboseMacros} setting is saved in your @file{~/.ne/.default#ap} file
+The @code{VerboseMacros} setting is saved in your @file{~/.config/ne/.default#ap} file
 when you use the @code{SaveDefPrefs} command or the @samp{Save Def Prefs} menu.
 It is not saved by the @code{SaveAutoPrefs} command.
 
@@ -4321,7 +4321,7 @@ can input the file name on the command line.
 @noindent Syntax: @code{LoadAutoPrefs}@*
 @noindent Abbreviation: @code{LAP}
 
-@noindent loads the preferences file in @file{~/.ne} associated
+@noindent loads the preferences file in @file{~/.config/ne} associated
 with the current document's file name extension. If the current file
 name has no extension, the default preferences are loaded.
 See @ref{AutoPrefs}.
@@ -4335,7 +4335,7 @@ See @ref{AutoPrefs}.
 @noindent Syntax: @code{SaveAutoPrefs}@*
 @noindent Abbreviation: @code{SAP}
 
-@noindent saves the current preferences to the file in @file{~/.ne}
+@noindent saves the current preferences to the file in @file{~/.config/ne}
 associated with the current document's file name extension. If the
 current file name has no extension, an error message is issued.
 See @ref{AutoPrefs}.
@@ -4349,7 +4349,7 @@ See @ref{AutoPrefs}.
 @noindent Syntax: @code{SaveDefPrefs}@*
 @noindent Abbreviation: @code{SDP}
 
-@noindent saves the current preferences to the @file{~/.ne/.default#ap} file.
+@noindent saves the current preferences to the @file{~/.config/ne/.default#ap} file.
 This file is always loaded by @code{ne} at startup.
 
 
@@ -4390,7 +4390,7 @@ prompted for one. The current one, if set, is suggested as the
 default. Use the @key{Tab} key for a requester of the extant
 syntax recognizers. The special @var{name} * turns off syntax highlighting for
 the current document. Otherwise, @var{name} must match a syntax
-definition either in your @file{~/.ne/syntax} directory or in a
+definition either in your @file{~/.config/ne/syntax} directory or in a
 directory named @samp{syntax} inside @code{ne}'s global directory.
 Additionally, @code{ne} has a table mapping common suffixes to
 syntax names. If there is no syntax with a given name, @code{ne}
@@ -5372,7 +5372,7 @@ the key code @code{ne} associates with that key, the
 command currently associated with that key code, as well as the
 input class for that key code. Input class codes are: ALPHA, COMMAND,
 RETURN, TAB, IGNORE, and INVALID. This can be useful while
-configuring your @file{~/.ne/.keys} file.
+configuring your @file{~/.config/ne/.keys} file.
 
 If the optional integer @var{k} (between 0 and 511) is given, @code{KeyCode}
 uses @var{k} as the key code and displays the information described above.
@@ -5431,7 +5431,7 @@ ASCII characters between 128 and 159, and will be parsed as shortcuts by
 
 @code{ne} allows you to associate any keystroke with any command. To
 accomplish this task, you have to create a (possibly UTf-8) file named
-@file{.keys} in your @file{~/.ne} directory. You can change
+@file{.keys} in your @file{~/.config/ne} directory. You can change
 the default name (possibly specifying a complete path) using the
 @code{--keys} argument (@pxref{Arguments}).
 
@@ -5574,7 +5574,7 @@ file), just give @code{ne} the @code{--no-config} argument. @xref{Arguments}.
 
 @code{ne} allows you to change the contents of its menus. To
 accomplish this task, you have to create a file named @file{.menus} in your
-home directory, or in @file{~/.ne}. You can change the default name
+home directory, or in @file{~/.config/ne}. You can change the default name
 (possibly specifying a complete path) using the @code{--menus} argument
 (@pxref{Arguments}).
 
@@ -5632,7 +5632,7 @@ extension}. This affects which AutoPrefs and Syntax settings @code{ne}
 applies to the document.
 
 The document's contents are matched against the regular expressions (see
-@pxref{Regular Expressions}) you include in your @file{~/.ne/.extensions}
+@pxref{Regular Expressions}) you include in your @file{~/.config/ne/.extensions}
 file. (There may also be an @file{extensions} file (no leading @samp{.})
 in the global directory.) If @code{ne} finds a match it will act as if the
 document's name had the corresponding extension.
@@ -5640,11 +5640,11 @@ document's name had the corresponding extension.
 Note that by default @code{ne} does not override a file's
 given extension. However, you can specify any number of extensions that
 you would like to allow to be overridden by including lines in your
- @file{~/.ne/extensions} containing only a dot followed by a single extension or
+ @file{~/.config/ne/extensions} containing only a dot followed by a single extension or
 shell ``glob pattern''. In particular, @code{.*"} would
 allow overriding all extensions.
 
-@noindent Here's an example @file{~/.ne/.extensions} file:
+@noindent Here's an example @file{~/.config/ne/.extensions} file:
 
 @example
 # The following patterns match some common command interpreters.
@@ -5736,7 +5736,7 @@ Sometimes, due to different opinions about the best default foreground and
 background colors, some of the color choices in a syntax file might be
 unreadable (for instance, @samp{dim white} on a terminal with a white
 background). Just copy the guilty syntax specification file to the
-@file{~/.ne/syntax} directory, and change the color names at the start of
+@file{~/.config/ne/syntax} directory, and change the color names at the start of
 the file.
 
 @item Use the @samp{tabs} syntax to distinguish @sc{tab}s from @sc{space}s.

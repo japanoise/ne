@@ -20,7 +20,7 @@
     if enough disk space is available.
 
   * Determine a "virtual extension" based on document contents and patterns
-    from ~/.ne/.extensions. Allows overrides of specified extensions only.
+    from ~/.config/ne/.extensions. Allows overrides of specified extensions only.
     If no match, use .default#ap prefs.
 
   * Status flag "!" indicates the last line of document is not empty, thus
@@ -126,7 +126,7 @@
   
 2.3  2011-10-28
 
-  * Takes 'SEQ "sequence" KEYCODE' in ~/.ne/.keys to bind character
+  * Takes 'SEQ "sequence" KEYCODE' in ~/.config/ne/.keys to bind character
     sequences to key codes.
 
 2.2  2011-01-23
@@ -206,9 +206,9 @@
   * More parsimonious status-bar updates.
 
   * StatusBar, FastGUI, VerboseMacros, and RequestOrder are not buffer specific, are
-    only saved in ~/.ne/.default#ap.
+    only saved in ~/.config/ne/.default#ap.
 
-  * Current syntax name is buffer specific; only saved in autoprefs, not ~/.ne/.default#ap.
+  * Current syntax name is buffer specific; only saved in autoprefs, not ~/.config/ne/.default#ap.
 
   * The Amiga is officially no longer supported (well, not exactly an
     improvement...).

@@ -19,10 +19,10 @@ ini  20   ^\[\s*\w+\s*\]$
 
 # By default ne does not override a file's given extension. However,
 # you can specify any number of extensions that you would like to
-# allow to be overridden by including lines in your ~/.ne/extensions
+# allow to be overridden by including lines in your ~/.config/ne/extensions
 # containing only a dot followed by a single extension or shell "glob
 # pattern". (Basically if "ls *.pat" matches, then put ".pat" on a
-# line by itself in your ~/.ne/.extensions file. Note that ".*" would
+# line by itself in your ~/.config/ne/.extensions file. Note that ".*" would
 # allow overriding all extensions.
 #
 # Don't put such extensions in this global file, as then individual

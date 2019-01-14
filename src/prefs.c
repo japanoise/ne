@@ -343,7 +343,7 @@ void load_virtual_extensions() {
 		load_virt_ext(virt_name);
 	}
 
-	/* Then try the user's ~/.ne/.extensions, possibly overriding global settings. */
+	/* Then try the user's ~/.config/ne/.extensions, possibly overriding global settings. */
 	if (prefs_dir = exists_prefs_dir()) {
 		char virt_name[strlen(VIRTUAL_EXT_NAME) + strlen(prefs_dir) + 1];
 		strcat(strcpy(virt_name, prefs_dir), VIRTUAL_EXT_NAME);
@@ -438,7 +438,7 @@ static int do_auto_prefs(buffer *b, const char * ext, int (prefs_func)(buffer *,
 	assert_buffer(b);
 	if (!ext && !(ext = virtual_extension(b)) && !(ext = extension(b->filename))) return HAS_NO_EXTENSION;
 
-	/* Try global autoprefs -- We always load these before ~/.ne autoprefs.
+	/* Try global autoprefs -- We always load these before ~/.config/ne autoprefs.
 	   That way the user can override whatever he wants, but anything he
 	   doesn't override still gets passed through. */
 
@@ -454,7 +454,7 @@ static int do_auto_prefs(buffer *b, const char * ext, int (prefs_func)(buffer *,
 		}
 	}
 
-	/* Try ~/.ne autoprefs */
+	/* Try ~/.config/ne autoprefs */
 	if (prefs_dir = exists_prefs_dir()) {
 		if (auto_name = malloc(strlen(ext) + strlen(prefs_dir) + strlen(PREF_FILE_SUFFIX) + 2)) {
 			strcat(strcat(strcpy(auto_name, prefs_dir), ext), PREF_FILE_SUFFIX);

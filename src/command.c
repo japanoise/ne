@@ -330,7 +330,7 @@ int parse_command_line(const char * command_line, int64_t * const num_arg, char 
 
 
 /* Parses and executes a command line. Standard error codes are returned. If
-   the search for a standard command fails, we try to execute a macro in ~/.ne
+   the search for a standard command fails, we try to execute a macro in ~/.config/ne
    with the same name. */
 
 int execute_command_line(buffer *b, const char *command_line) {
@@ -549,7 +549,7 @@ int play_macro(buffer *b, char_stream *cs) {
 /* Loads a macro, and puts it in the global macro hash table.  file_part is
    applied to the name argument before storing it and hashing it.  Note that if
    the macro can't be opened, we retry prefixing its name with the preferences
-   directory name (~/.ne/). Thus, for instance, all autopreferences file whose
+   directory name (~/.config/ne/). Thus, for instance, all autopreferences file whose
    name does not conflict with internal commands can be executed transparently
    just by typing their name. */
 
